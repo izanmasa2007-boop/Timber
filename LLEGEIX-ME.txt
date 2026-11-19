@@ -1,0 +1,15 @@
+TIMBER - Projecte normal de la practica (Visual Studio 2022 / 2026)
+
+COM OBRIR-LO:
+1. Descomprimeix aquesta carpeta.
+2. Doble clic a Timber.sln.
+3. A dalt, deixa seleccionat: Debug  i  x64.
+4. Prem F5.
+
+REQUISITS:
+- SFML 3 a C:\SFML64 (include i lib).
+- Si en executar falta una DLL de SFML, copia les d'C:\SFML64\bin
+  a la carpeta Timber\x64\Debug (al costat de l'exe).
+
+Nomes hi ha el codi de la practica: fons, arbre, llenyataire,
+una abella i tres nuvols. Res mes.

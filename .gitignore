@@ -1,0 +1,16 @@
+# Visual Studio / build
+.vs/
+x64/
+Debug/
+Release/
+*.obj
+*.ilk
+*.pdb
+*.idb
+*.tlog
+*.log
+*.user
+*.exe.recipe
+
+# Fitxer generat en executar
+record.txt

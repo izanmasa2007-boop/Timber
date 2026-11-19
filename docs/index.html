@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Timber V2 — Pràctica dels 9 reptes</title>
+<style>
+  :root{
+    --bg:#0f1419; --panel:#1a2029; --ink:#e8eef2; --muted:#9db0bd;
+    --accent:#4ea1ff; --accent2:#ffcc4d; --line:#2a3542;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6}
+  header{padding:64px 20px 40px;text-align:center;
+    background:radial-gradient(1200px 400px at 50% -50%,#1d3a5f 0%,var(--bg) 70%)}
+  header h1{margin:0 0 8px;font-size:clamp(2rem,5vw,3.2rem)}
+  header p{margin:0;color:var(--muted);font-size:1.1rem}
+  .links{margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .links a{text-decoration:none;color:var(--ink);border:1px solid var(--line);
+    padding:10px 18px;border-radius:10px;background:var(--panel);transition:.2s}
+  .links a:hover{border-color:var(--accent);color:var(--accent)}
+  main{max-width:900px;margin:0 auto;padding:20px 16px 80px}
+  section{margin:48px 0}
+  h2{font-size:1.6rem;border-bottom:2px solid var(--line);padding-bottom:8px}
+  table{width:100%;border-collapse:collapse;margin-top:12px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+  th{color:var(--accent2)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .video{position:relative;padding-top:56.25%;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .mermaid{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;margin-top:16px;text-align:center}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:16px}
+  .grid div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .grid b{color:var(--accent)}
+  footer{text-align:center;color:var(--muted);padding:40px 20px;border-top:1px solid var(--line)}
+  code{background:#222c38;padding:2px 6px;border-radius:6px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🌲 Timber V2</h1>
+  <p>Pràctica dels 9 reptes · C++ amb SFML 3 · CFGS DAM</p>
+  <div class="links">
+    <!-- Canvia USUARI pel teu usuari de GitHub quan creïs el repositori -->
+    <a href="https://github.com/USUARI/Timber">📦 Codi al repositori</a>
+    <a href="https://github.com/USUARI/Timber/releases/tag/v1.0">⬇️ Descarregar v1.0</a>
+  </div>
+</header>
+
+<main>
+  <section>
+    <h2>El joc</h2>
+    <div class="card">
+      <p>Versió ampliada del clàssic <em>Timber!!!</em>. Talla l'arbre esquivant les
+      branques, encadena talls per guanyar temps i supera el teu rècord abans de
+      quedar-te sense vides o sense temps.</p>
+      <table>
+        <tr><th>Tecla</th><th>Acció</th></tr>
+        <tr><td>Enter</td><td>Començar / reiniciar / pausar</td></tr>
+        <tr><td>1 / 2</td><td>Mode Fàcil (6 s) / Difícil (3 s)</td></tr>
+        <tr><td>Fletxa esquerra</td><td>Tallar pel costat esquerre</td></tr>
+        <tr><td>Fletxa dreta</td><td>Tallar pel costat dret</td></tr>
+        <tr><td>Esc</td><td>Sortir</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Presentació</h2>
+    <div class="card">
+      <p>Aquest projecte transforma el codi base <code>TimberSFML3.cpp</code> resolent
+      9 reptes que treballen variables i conversions (RA1), estructures de control i
+      excepcions (RA3), entrada/sortida i fitxers (RA5) i tipus avançats com arrays,
+      structs i vectors (RA6).</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Vídeo</h2>
+    <!-- Enganxa l'ID del teu vídeo de YouTube on diu VIDEO_ID -->
+    <div class="video">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID"
+        title="Gameplay Timber V2" allowfullscreen></iframe>
+    </div>
+    <p style="color:var(--muted);font-size:.9rem">Substitueix <code>VIDEO_ID</code> per l'identificador del teu vídeo.</p>
+  </section>
+
+  <section>
+    <h2>Diagrames</h2>
+
+    <h3>Bucle principal del joc</h3>
+    <div class="mermaid">
+flowchart TD
+  A[Inici] --> B[Carregar recursos<br/>try / catch]
+  B --> C{Pausa?}
+  C -- Sí --> D[Menú: triar mode 1/2<br/>Enter per començar]
+  D --> C
+  C -- No --> E[Llegir entrada:<br/>fletxes = tallar]
+  E --> F[Actualitzar temps, NPC,<br/>branques i tronc]
+  F --> G{Branca al costat<br/>del jugador?}
+  G -- Sí --> H[Perdre vida]
+  H --> I{Vides = 0?}
+  I -- Sí --> J[Game Over<br/>desar rècord]
+  I -- No --> K[Netejar branques]
+  G -- No --> L[Dibuixar escena + HUD]
+  K --> L
+  L --> C
+  J --> C
+    </div>
+
+    <h3>Estructures de dades</h3>
+    <div class="mermaid">
+classDiagram
+  class NPC{ Sprite sprite; bool active; float speed; int sentit }
+  class Tree{ Sprite sprite; int layer }
+  class Branch{ Side side; Sprite sprite }
+  class GameMode{ <<enum>> FACIL; DIFICIL }
+  class Side{ <<enum>> LEFT; RIGHT; NONE }
+  Branch --> Side
+    </div>
+  </section>
+
+  <section>
+    <h2>Els 9 reptes</h2>
+    <div class="grid">
+      <div><b>1.</b> Recursos propis amb càrrega segura</div>
+      <div><b>2.</b> Més NPC (abelles i núvols)</div>
+      <div><b>3.</b> Bosc d'arbres amb struct i vector</div>
+      <div><b>4.</b> Vides + panell semitransparent</div>
+      <div><b>5.</b> Indicador d'FPS (static_cast)</div>
+      <div><b>6.</b> Branques en un vector d'structs</div>
+      <div><b>7.</b> Dos modes de joc (enum + switch)</div>
+      <div><b>8.</b> Rècord persistent en fitxer</div>
+      <div><b>9.</b> Excepcions, assert, break/continue</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Timber V2 — CFGS DAM · La Salle Girona · Professor <code>rblanch8</code>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.1/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark'});</script>
+</body>
+</html>
