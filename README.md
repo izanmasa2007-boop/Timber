@@ -1,3 +1,4 @@
+<img width="2555" height="1129" alt="image" src="https://github.com/user-attachments/assets/b2f9a10a-0923-4c96-8738-76186fdffb0a" />
 # Timber V2 — Pràctica dels 9 reptes
 
 Joc *Timber!!!* fet amb **C++ i SFML 3**, transformant el codi base `TimberSFML3.cpp` a través de 9 reptes progressius (RA1, RA3, RA5, RA6).
