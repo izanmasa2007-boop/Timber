@@ -263,7 +263,7 @@ int main()
     const std::string recordFile = "record.txt";
     int record = readRecord(recordFile);
 
-    std::string message = "Prem Enter per començar!";
+    std::string message = "Prem Enter per jugar!";
 
     // ============================================================
     //  BUCLE PRINCIPAL
@@ -363,11 +363,11 @@ int main()
                 paused = true; gameOver = true;
                 message = "Temps esgotat!";
                 timeUp.play();
-                std::cout << "[FI] Temps esgotat. Score=" << score << std::endl;
+                std::cout << "[FI] Temps esgotat. Score=" << score << "  FPS=" << fpsValue << std::endl;
                 if (score > record) { record = score; writeRecord(recordFile, record); }
             }
 
-            // Repte 9: continue per saltar els NPC inactius abans d'actualitzar
+            // Actualitzem tots els NPC (abelles i nuvols)
             for (size_t i = 0; i < NPCTable.size(); i++) {
                 updateNPC(NPCTable[i], dt.asSeconds());
             }
@@ -387,14 +387,14 @@ int main()
                 lives--;                         // Repte 4
                 death.play();
                 std::cout << "[VIDA] Perduda. Vides=" << lives
-                          << "  Score=" << score << std::endl;
+                          << "  Score=" << score << "  FPS=" << fpsValue << std::endl;
                 if (lives <= 0)
                 {
                     paused = true; gameOver = true;
                     message = "ESCLAFAT!";
                     spriteRIP.setPosition({ 525, 760 });
                     spritePlayer.setPosition({ 2000, 660 });
-                    std::cout << "[FI] Game Over. Score=" << score << std::endl;
+                    std::cout << "[FI] Game Over. Score=" << score << "  FPS=" << fpsValue << std::endl;
                     if (score > record) { record = score; writeRecord(recordFile, record); }
                 }
                 else
@@ -432,7 +432,7 @@ int main()
             std::stringstream ss; ss << "FPS: " << fpsValue; fpsText.setString(ss.str());
         }
         {
-            std::stringstream ss; ss << "Rècord: " << record; recordText.setString(ss.str());
+            std::stringstream ss; ss << "Record: " << record; recordText.setString(ss.str());
         }
         modeText.setString(mode == GameMode::FACIL ? "Mode: Facil" : "Mode: Dificil");
 
