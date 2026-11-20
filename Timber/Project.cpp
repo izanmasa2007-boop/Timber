@@ -116,6 +116,7 @@ int main()
             textureCloud, textureBranch;
     SoundBuffer chopBuffer, deathBuffer, timeBuffer;
     Font font;
+    Font fontLives;                       // Repte 4: font diferent per a les vides
     try {
         loadTexture(textureBackground, "graphics/background.png");
         loadTexture(textureTree,       "graphics/tree.png");
@@ -133,6 +134,9 @@ int main()
         if (!font.openFromFile("fonts/KOMIKAP_.ttf"))
             throw ResourceLoadException("No s'ha pogut carregar la font: fonts/KOMIKAP_.ttf");
         std::cout << "[OK] Font carregada: fonts/KOMIKAP_.ttf" << std::endl;
+        if (!fontLives.openFromFile("fonts/DejaVuSans-Bold.ttf"))
+            throw ResourceLoadException("No s'ha pogut carregar la font: fonts/DejaVuSans-Bold.ttf");
+        std::cout << "[OK] Font carregada: fonts/DejaVuSans-Bold.ttf" << std::endl;
     }
     catch (const ResourceLoadException& e) {
         std::cerr << "ERROR DE RECURS: " << e.what() << std::endl;
@@ -196,7 +200,7 @@ int main()
     scoreText.setFillColor(Color::White);
     scoreText.setPosition({ 20, 20 });
 
-    Text livesText(font);                 // Repte 4
+    Text livesText(fontLives);            // Repte 4: font propia
     livesText.setCharacterSize(60);
     livesText.setFillColor(Color::White);
     livesText.setPosition({ 20, 120 });
